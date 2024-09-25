@@ -68,10 +68,10 @@ class HttpApiClient
         }
     }
 
-    public function put(string $endpoint, array $data = []): array
+    public function patch(string $endpoint, array $data = []): array
     {
         try {
-            $response = $this->httpClient->put($this->buildUrl($endpoint), [
+            $response = $this->httpClient->patch($this->buildUrl($endpoint), [
                 'headers' => $this->getHeaders(),
                 'json' => $data,
             ]);

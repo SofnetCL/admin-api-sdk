@@ -2,6 +2,8 @@
 
 namespace AdminSdk;
 
+use AdminSdk\Domains\Integrations;
+
 class AdminClient
 {
     private HttpApiClient $httpApiClient;
@@ -13,5 +15,10 @@ class AdminClient
             'Authorization' => "ApiKey $apiKey",
         ]);
         $this->httpApiClient->setBaseUrl($apiUrl);
+    }
+
+    public function integrations(): Integrations
+    {
+        return new Integrations($this->httpApiClient);
     }
 }
