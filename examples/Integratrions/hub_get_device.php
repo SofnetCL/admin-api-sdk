@@ -16,4 +16,4 @@ $admiClient = new AdminSdk\AdminClient($apiKey, $adminApiUrl);
 $devices = $admiClient->integrations()->hub()->getDevice('BYRQ201160016');
 
 print_r($devices->toArray());
-print_r($devices->getTenant()->getSubdomain());
+print_r($devices->getTenant()?->getSubdomain());
