@@ -13,9 +13,6 @@ $apiKey = $keyResponse['key'];
 
 $admiClient = new AdminSdk\AdminClient($apiKey, $adminApiUrl);
 
-$response = $admiClient->integrations()->hub()->updateDevice(
-    serial: 'BYRQ201160016',
-    alias: 'My Device',
-);
+$response = $admiClient->devices()->publish('BYRQ201160016');
 
 print_r($response);

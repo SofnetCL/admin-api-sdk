@@ -1,6 +1,6 @@
 <?php
 
-namespace AdminSdk\Domains\Integrations\Hub;
+namespace AdminSdk\Entities;
 
 class Device
 {

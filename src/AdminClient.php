@@ -2,7 +2,7 @@
 
 namespace AdminSdk;
 
-use AdminSdk\Domains\Integrations;
+use AdminSdk\Domains\Devices;
 
 class AdminClient
 {
@@ -17,8 +17,8 @@ class AdminClient
         $this->httpApiClient->setBaseUrl($apiUrl);
     }
 
-    public function integrations(): Integrations
+    public function devices(): Devices
     {
-        return new Integrations($this->httpApiClient);
+        return new Devices($this->httpApiClient);
     }
 }

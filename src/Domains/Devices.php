@@ -1,19 +1,19 @@
 <?php
 
-namespace AdminSdk\Domains\Integrations;
+namespace AdminSdk\Domains;
 
-use AdminSdk\Domains\Integrations\Hub\Device;
+use AdminSdk\Entities\Device;
 use AdminSdk\HttpApiClient;
 
-class Hub
+class Devices
 {
     public function __construct(
         private HttpApiClient $httpApiClient
     ) {}
 
-    public function publishDevice(string $serial): bool
+    public function publish(string $serial): bool
     {
-        $response = $this->httpApiClient->post('integrations/hub/devices', [
+        $response = $this->httpApiClient->post('cronofy/devices', [
             'serial' => $serial,
         ]);
 
@@ -22,7 +22,7 @@ class Hub
         return $responseMessage === 'Device created';
     }
 
-    public function updateDevice(
+    public function update(
         string $serial,
         ?string $alias = null,
         ?string $model = null,
@@ -40,16 +40,16 @@ class Hub
 
         $data = array_filter($data, fn($value) => $value !== null);
 
-        $response = $this->httpApiClient->patch("integrations/hub/devices/$serial", $data);
+        $response = $this->httpApiClient->patch("cronofy/devices/$serial", $data);
 
         $responseMessage = $response['message'] ?? '';
 
         return $responseMessage === 'Device updated';
     }
 
-    public function getDevice(string $serial): Device
+    public function get(string $serial): Device
     {
-        $response = $this->httpApiClient->get("integrations/hub/devices/$serial");
+        $response = $this->httpApiClient->get("cronofy/devices/$serial");
 
         return new Device(
             id: $response['id'],
